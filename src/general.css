@@ -1,0 +1,82 @@
+*,
+*:after {
+  box-sizing: border-box;
+}
+body,
+html {
+  scroll-behavior: smooth;
+}
+::selection {
+  background-color: teal;
+  color: white;
+}
+#mobileMenu {
+  inset-inline-start: -100% !important;
+}
+
+.underlined {
+  /*   background: red; */
+  position: relative;
+}
+
+.underline-mask:after {
+  content: "";
+  position: absolute;
+  top: 95%;
+  width: 150%;
+  aspect-ratio: 3 / 1;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border-radius: 50%;
+  border: 6px solid #cae9e7;
+  /* Use a conic gradient mask to hide and show the bits you want */
+  --spread: 140deg;
+  --start: 290deg;
+  mask: conic-gradient(
+    from var(--start),
+    white 0 var(--spread),
+    transparent var(--spread)
+  );
+}
+.underline-clip:after {
+  content: "";
+  position: absolute;
+  top: 95%;
+  width: 150%;
+  aspect-ratio: 3 / 1;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border-radius: 50%;
+  border: 6px solid teal;
+  /* Use a clip-path to hide and show the bits you want */
+  clip-path: polygon(0 0, 50% 50%, 100% 0);
+}
+.adv {
+  position: relative;
+  cursor: pointer;
+  transition: 0.6s;
+}
+.adv:before,
+.adv:after {
+  content: attr(data-text);
+  transition: 0.6s;
+}
+.adv:before {
+  position: absolute;
+  z-index: -1;
+  text-shadow: 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px,
+    0px 0px, 0px 0px, 0px 0px;
+  -webkit-mask: repeating-linear-gradient(
+    45deg,
+    transparent 0 3px,
+    #cae9e7 0 6px
+  );
+  mask: repeating-linear-gradient(45deg, transparent 0 3px, #cae9e7 0 6px);
+}
+.adv:hover {
+  transform: translate(-10px, -10px);
+}
+.adv:hover:before {
+  text-shadow: 1px 1px, 2px 2px, 3px 3px, 4px 4px, 5px 5px, 6px 6px, 7px 7px,
+    8px 8px, 9px 9px, 10px 10px;
+}
